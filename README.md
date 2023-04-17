@@ -1,4 +1,4 @@
-# Interspeech-NoRefER
+# NoRefER
 This is a repo for reproducing the results presented at NoRefER paper.
 
 - **Model checkpoints** are available in the link below:
