@@ -16,3 +16,7 @@ This is a repo for reproducing the results presented at NoRefER paper.
   <code>python main_noref.py --filename en-common.csv --modelname self_super.ckpt</code>
 
 - **The code for the baseline results** and calculating perplexity is also provided in perplexity_noref.py. You just need to specify the filename to run this code. 
+
+  example:
+
+  <code>python main_noref.py --filename en-common.csv</code>
