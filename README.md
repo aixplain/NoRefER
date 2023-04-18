@@ -19,4 +19,4 @@ This is a repo for reproducing the results presented at NoRefER paper.
 
   example:
 
-  <code>python main_noref.py --filename en-common.csv</code>
+  <code>python perplexity_noref.py --filename en-common.csv</code>
