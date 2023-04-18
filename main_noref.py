@@ -52,14 +52,16 @@ def inference(model, dataloader):
         return torch.cat(outputs)
 
 model = aiXER('nreimers/mMiniLMv2-L12-H384-distilled-from-XLMR-Large')
-checkpoint = torch.load(args.modelname, map_location='cpu')
+model_path = "./checkpoints/" + args.modelname
+checkpoint = torch.load(model_path, map_location='cpu')
 model_weights = checkpoint["state_dict"]
 model.load_state_dict(model_weights)
 model.eval()
 
 print('Producing the Results for %s\nUse --filename to change the file.' % args.filename)
 
-data = pd.read_csv(args.filename)
+file_path = "./dataset/" + args.filename
+data = pd.read_csv(file_path)
 
 
 data = data[data['WER, uncased, not punctuated'].notna()]
@@ -101,12 +103,4 @@ print('Correlations with WER score itself')
 print('pearson %f' % stats.pearsonr(data['WER, uncased, not punctuated'], -data['preds'])[0])
 print('spearman %f' % stats.spearmanr(data['WER, uncased, not punctuated'], -data['preds'])[0])
 print('kendall %f' % stats.kendalltau(data['WER, uncased, not punctuated'], -data['preds'])[0])
-'''
-wers = torch.Tensor(data["rank"].values)
 
-from torchmetrics import SpearmanCorrCoef, PearsonCorrCoef, KendallRankCorrCoef
-
-print(PearsonCorrCoef()(wers, preds))
-print(SpearmanCorrCoef()(wers, preds))
-print(KendallRankCorrCoef()(wers, preds))
-'''

@@ -2,19 +2,20 @@ import torch, re, pdb
 import pandas as pd
 from torch import nn
 from transformers import AutoTokenizer, AutoModel
+import evaluate
 from torch.utils.data import Dataset, DataLoader
 from argparse import ArgumentParser
 parser = ArgumentParser(description='Input parameters')
 parser.add_argument('--filename', default='en-libre.csv', type=str, help='Enter name of the .csv file filename e.g. en-libre.csv')
 args = parser.parse_args()
 
-import evaluate
 
 perplexity = evaluate.load("perplexity", module_type="metric")
 
 print('Producing the Results for %s\nUse --filename to change the file.' % args.filename)
 
-data = pd.read_csv(args.filename)
+file_path = "./dataset/" + args.filename
+data = pd.read_csv(file_path)
 
 
 data = data[data['WER, uncased, not punctuated'].notna()]
@@ -52,12 +53,4 @@ print('Correlations with WER score itself')
 print('pearson %f' % stats.pearsonr(data['WER, uncased, not punctuated'], -data['preds'])[0])
 print('spearman %f' % stats.spearmanr(data['WER, uncased, not punctuated'], -data['preds'])[0])
 print('kendall %f' % stats.kendalltau(data['WER, uncased, not punctuated'], -data['preds'])[0])
-'''
-wers = torch.Tensor(data["rank"].values)
 
-from torchmetrics import SpearmanCorrCoef, PearsonCorrCoef, KendallRankCorrCoef
-
-print(PearsonCorrCoef()(wers, preds))
-print(SpearmanCorrCoef()(wers, preds))
-print(KendallRankCorrCoef()(wers, preds))
-'''
