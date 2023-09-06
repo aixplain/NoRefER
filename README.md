@@ -20,3 +20,23 @@ This is a repo for reproducing the results presented at NoRefER paper.
   example:
 
   <code>python perplexity_noref.py --filename en-common.csv</code>
+
+  # Papers
+  More details are available in the following papers. Welcome to cite our work if you find it is helpful to your research.
+```
+@article{yuksel2023reference,
+  title={A Reference-less Quality Metric for Automatic Speech Recognition via Contrastive-Learning of a Multi-Language Model with Self-Supervision},
+  author={Yuksel, Kamer Ali and Ferreira, Thiago and Gunduz, Ahmet and Al-Badrashiny, Mohamed and Javadi, Golara},
+  journal={arXiv preprint arXiv:2306.13114},
+  year={2023}
+}
+```
+```
+@article{yuksel2023norefer,
+  title={NoRefER: a Referenceless Quality Metric for Automatic Speech Recognition via Semi-Supervised Language Model Fine-Tuning with Contrastive Learning},
+  author={Yuksel, Kamer Ali and Ferreira, Thiago and Javadi, Golara and El-Badrashiny, Mohamed and Gunduz, Ahmet},
+  journal={arXiv preprint arXiv:2306.12577},
+  year={2023}
+}
+```
+
