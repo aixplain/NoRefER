@@ -33,13 +33,15 @@ More details are available in the following papers. Welcome to cite our work if 
   year={2023}
 }
 ```
-[[Paper](https://arxiv.org/abs/2306.12577)]
+[[Paper](https://www.isca-speech.org/archive/pdfs/interspeech_2023/yuksel23_interspeech.pdf)]
 ```
-@article{yuksel2023norefer,
-  title={NoRefER: a Referenceless Quality Metric for Automatic Speech Recognition via Semi-Supervised Language Model Fine-Tuning with Contrastive Learning},
-  author={Yuksel, Kamer Ali and Ferreira, Thiago and Javadi, Golara and El-Badrashiny, Mohamed and Gunduz, Ahmet},
-  journal={arXiv preprint arXiv:2306.12577},
-  year={2023}
+@inproceedings{yuksel23_interspeech,
+  author={Kamer Ali Yuksel and Thiago Castro Ferreira and Golara Javadi and Mohamed Al-Badrashiny and Ahmet Gunduz},
+  title={{NoRefER: a Referenceless Quality Metric for Automatic Speech Recognition via Semi-Supervised Language Model Fine-Tuning with Contrastive Learning}},
+  year=2023,
+  booktitle={Proc. INTERSPEECH 2023},
+  pages={466--470},
+  doi={10.21437/Interspeech.2023-643}
 }
 ```
 
