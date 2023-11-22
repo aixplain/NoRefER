@@ -24,13 +24,17 @@ This is a repo for reproducing the results presented at NoRefER paper.
 # Papers
 More details are available in the following papers. Welcome to cite our work if you find it is helpful to your research.
 
-[[Paper](https://arxiv.org/abs/2306.13114)] 
+[[Paper](https://doi.org/10.1109/ICASSPW59220.2023.10193003)] 
 ```
-@article{yuksel2023reference,
-  title={A Reference-less Quality Metric for Automatic Speech Recognition via Contrastive-Learning of a Multi-Language Model with Self-Supervision},
-  author={Yuksel, Kamer Ali and Ferreira, Thiago and Gunduz, Ahmet and Al-Badrashiny, Mohamed and Javadi, Golara},
-  journal={arXiv preprint arXiv:2306.13114},
-  year={2023}
+@inproceedings{yuksel23_icassp,
+  author       = {Kamer Ali Yuksel and Thiago Castro Ferreira and Ahmet Gunduz and Mohamed Al-Badrashiny and Golara Javadi},
+  title        = {A Reference-Less Quality Metric for Automatic Speech Recognition via Contrastive-Learning of a Multi-Language Model with Self-Supervision},
+  booktitle    = {IEEE International Conference on Acoustics, Speech, and Signal Processing, ICASSP 2023, Rhodes Island, Greece, June 4-10, 2023},
+  pages        = {1--5},
+  publisher    = {IEEE},
+  year         = {2023},
+  url          = {https://doi.org/10.1109/ICASSPW59220.2023.10193003},
+  doi          = {10.1109/ICASSPW59220.2023.10193003}
 }
 ```
 [[Paper](https://www.isca-speech.org/archive/pdfs/interspeech_2023/yuksel23_interspeech.pdf)]
