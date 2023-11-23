@@ -41,7 +41,7 @@ More details are available in the following papers. Welcome to cite our work if 
 ```
 @inproceedings{yuksel23_interspeech,
   author={Kamer Ali Yuksel and Thiago Castro Ferreira and Golara Javadi and Mohamed Al-Badrashiny and Ahmet Gunduz},
-  title={{NoRefER: a Referenceless Quality Metric for Automatic Speech Recognition via Semi-Supervised Language Model Fine-Tuning with Contrastive Learning}},
+  title={NoRefER: a Referenceless Quality Metric for Automatic Speech Recognition via Semi-Supervised Language Model Fine-Tuning with Contrastive Learning},
   year=2023,
   booktitle={Proc. INTERSPEECH 2023},
   pages={466--470},
