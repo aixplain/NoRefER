@@ -7,7 +7,7 @@ Here we use NORefER as a tool for XAI using token attentions of this model.
 
 In these experiments we used **NoeRefER-Semi** model parameters.
 
-- **Test datasets** are uploaded as csv files. These files are used for reported results in the paper.
+- **Test datasets** are uploaded as [csv files](https://github.com/aixplain/NoRefER/tree/main/dataset). These files are used for reported results in the paper.
 
 
 
