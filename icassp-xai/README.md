@@ -13,7 +13,7 @@ In these experiments we used **NoeRefER-Semi** model parameters.
 
 [CTC](https://github.com/aixplain/NoRefER/blob/main/icassp-xai/baseline/CTC/ASR_confidence_estimation.ipynb)
 
-Whisper
+[Whisper](https://github.com/aixplain/NoRefER/blob/main/icassp-xai/baseline/ASR_whisper/whisper_base.ipynb)
 
 
 
