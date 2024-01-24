@@ -93,6 +93,21 @@ def process_transcription_attention(transcription, need_split=True):
     return data
 
 
+def process_transcription_gradient(transcription):
+    tokenizer = AutoTokenizer.from_pretrained("aixplain/NoRefER")
+    model = AutoModel.from_pretrained("aixplain/NoRefER", trust_remote_code=True)
+    token_gradients =[]
+    for sentence in transcription:
+        positive_inputs = tokenizer(sentence, padding=True, return_tensors="pt")
+        outputs = model.roberta(**positive_inputs)
+        loss = model.dense(outputs.pooler_output).sigmoid().squeeze(-1).mean()  # Take the mean for a scalar loss
+        # loss = model.dense(outputs.pooler_output).squeeze(-1).mean() 
+        grads = torch.autograd.grad(loss, outputs.last_hidden_state, retain_graph=True, grad_outputs=torch.ones_like(loss))[0]
+        token_gradient = grads.sum(dim=1).tolist()
+        token_gradients.append(token_gradient[0])
+    return token_gradients
+
+
 def aggregate_scores(scores, method):
     """
     Aggregate a list of scores based on the specified method.
@@ -348,18 +363,3 @@ def align_attention_with_jiwer(all_word_jiwer_scores, all_word_attentions):
         all_aligned_attentions.append(aligned_attentions)
 
     return all_aligned_attentions
-
-
-def process_transcription_gradient(transcription):
-    tokenizer = AutoTokenizer.from_pretrained("aixplain/NoRefER")
-    model = AutoModel.from_pretrained("aixplain/NoRefER", trust_remote_code=True)
-    token_gradients =[]
-    for sentence in transcription:
-        positive_inputs = tokenizer(sentence, padding=True, return_tensors="pt")
-        outputs = model.roberta(**positive_inputs)
-        loss = model.dense(outputs.pooler_output).sigmoid().squeeze(-1).mean()  # Take the mean for a scalar loss
-        # loss = model.dense(outputs.pooler_output).squeeze(-1).mean() 
-        grads = torch.autograd.grad(loss, outputs.last_hidden_state, retain_graph=True, grad_outputs=torch.ones_like(loss))[0]
-        token_gradient = grads.sum(dim=1).tolist()
-        token_gradients.append(token_gradient[0])
-    return token_gradients

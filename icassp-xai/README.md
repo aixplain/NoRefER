@@ -9,5 +9,10 @@ In these experiments we used **NoeRefER-Semi** model parameters.
 
 - **Test datasets** are uploaded as [csv files](https://github.com/aixplain/NoRefER/tree/main/dataset). These files are used for reported results in the paper.
 
+- To reproduce the result for baseline run the following notebooks:
+
+CTC: 
+Whisper:
+
 
 
