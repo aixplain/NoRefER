@@ -9,7 +9,7 @@ from itertools import zip_longest
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, AutoModel
 
 
 def process_attention_values(attention_values):
@@ -173,6 +173,68 @@ def calculate_word_scores_with_tokens(df, attention_col, aggregation_method='ave
     return df
 
 
+def calculate_word_scores_with_tokens_grad(df, attention_col, aggregation_method='average'):
+    """
+    Calculate the score for each word in a sentence by aggregating the scores of its tokens.
+    Aggregation methods can be 'average', 'max', or 'q3' (third quartile).
+
+    :param df: DataFrame containing sentences and token attentions.
+    :param attention_col: Column name containing attention values for tokens.
+    :param aggregation_method: Method to aggregate token scores ('average', 'max', or 'q3').
+    :return: DataFrame with an additional column for word attentions and words.
+    """
+    word_attentions_dict = []
+    word_attentions_list = []
+    words_list = []
+
+    for index, row in df.iterrows():
+        token_attentions = row[attention_col]
+        tokens = row['outputToken']
+
+        word_attention_map = {}
+        current_word = ""
+        current_scores = []
+        word_attentions = []
+        words = []
+        first_token = True
+
+        for token, score in zip(tokens, token_attentions):
+            if token.startswith("▁") or token == "<s>":
+                if not first_token:
+                    word_attention_map[current_word] = aggregate_scores(current_scores, aggregation_method)
+                    word_attentions.append(aggregate_scores(current_scores, aggregation_method))
+                    words.append(current_word)
+
+                current_word = token[1:] if token != "<s>" else token
+                current_scores = [score]
+                first_token = False
+            else:
+                current_word += token
+                current_scores.append(score)
+
+        if current_word and current_scores:
+            word_attention_map[current_word] = aggregate_scores(current_scores, aggregation_method)
+            word_attentions.append(aggregate_scores(current_scores, aggregation_method))
+            words.append(current_word)
+
+        if len(words) > 1 and words[0] == "<s>":
+            words[0] += words[1]
+            words.pop(1)
+
+            if len(word_attentions) > 1:
+                word_attentions[0] = (word_attentions[0] + word_attentions[1]) / 2
+                word_attentions.pop(1)
+
+        word_attentions_dict.append(word_attention_map)
+        word_attentions_list.append(word_attentions)
+        words_list.append(words)
+
+    df['word_grad_dict'] = word_attentions_dict
+    df['word_grad'] = word_attentions_list
+    df['words'] = words_list
+    return df
+
+
 def expand_and_rank_words(df, words_col, attentions_col, jiwer_col):
     # Create an empty DataFrame for the expanded information
     expanded_data = []
@@ -287,4 +349,17 @@ def align_attention_with_jiwer(all_word_jiwer_scores, all_word_attentions):
 
     return all_aligned_attentions
 
-    
+
+def process_transcription_gradient(transcription):
+    tokenizer = AutoTokenizer.from_pretrained("aixplain/NoRefER")
+    model = AutoModel.from_pretrained("aixplain/NoRefER", trust_remote_code=True)
+    token_gradients =[]
+    for sentence in transcription:
+        positive_inputs = tokenizer(sentence, padding=True, return_tensors="pt")
+        outputs = model.roberta(**positive_inputs)
+        loss = model.dense(outputs.pooler_output).sigmoid().squeeze(-1).mean()  # Take the mean for a scalar loss
+        # loss = model.dense(outputs.pooler_output).squeeze(-1).mean() 
+        grads = torch.autograd.grad(loss, outputs.last_hidden_state, retain_graph=True, grad_outputs=torch.ones_like(loss))[0]
+        token_gradient = grads.sum(dim=1).tolist()
+        token_gradients.append(token_gradient[0])
+    return token_gradients
