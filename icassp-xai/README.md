@@ -11,7 +11,7 @@ In these experiments we used **NoeRefER-Semi** model parameters.
 
 - To reproduce the result for baseline run the following notebooks:
 
-CTC: 
+[CTC](https://github.com/aixplain/NoRefER/blob/main/icassp-xai/baseline/CTC/ASR_confidence_estimation.ipynb)
 Whisper:
 
 
