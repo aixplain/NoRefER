@@ -48,4 +48,15 @@ More details are available in the following papers. Welcome to cite our work if 
   doi={10.21437/Interspeech.2023-643}
 }
 ```
+[[Paper](https://arxiv.org/pdf/2401.11268.pdf)]
+```
+@misc{javadi2024wordlevel,
+      title={Word-Level ASR Quality Estimation for Efficient Corpus Sampling and Post-Editing through Analyzing Attentions of a Reference-Free Metric}, 
+      author={Golara Javadi and Kamer Ali Yuksel and Yunsu Kim and Thiago Castro Ferreira and Mohamed Al-Badrashiny},
+      year={2024},
+      eprint={2401.11268},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 
