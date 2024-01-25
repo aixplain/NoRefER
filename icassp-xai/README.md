@@ -19,5 +19,14 @@ In these experiments we used **NoeRefER-Semi** model parameters.
 
   [Whisper](https://github.com/aixplain/NoRefER/blob/main/icassp-xai/baseline/ASR_whisper/whisper_base.ipynb)
 
+[[Paper](https://arxiv.org/pdf/2401.11268.pdf)]
+```
+@article{javadi2024word,
+  title={Word-Level ASR Quality Estimation for Efficient Corpus Sampling and Post-Editing through Analyzing Attentions of a Reference-Free Metric},
+  author={Javadi, Golara and Yuksel, Kamer Ali and Kim, Yunsu and Ferreira, Thiago Castro and Al-Badrashiny, Mohamed},
+  journal={arXiv preprint arXiv:2401.11268},
+  year={2024}
+}
+```
 
 
