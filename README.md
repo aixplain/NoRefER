@@ -50,13 +50,16 @@ More details are available in the following papers. Welcome to cite our work if 
 ```
 [[Paper](https://arxiv.org/pdf/2401.11268.pdf)]
 ```
-@misc{javadi2024wordlevel,
+@inproceedings{javadi2024wordlevel,
       title={Word-Level ASR Quality Estimation for Efficient Corpus Sampling and Post-Editing through Analyzing Attentions of a Reference-Free Metric}, 
       author={Golara Javadi and Kamer Ali Yuksel and Yunsu Kim and Thiago Castro Ferreira and Mohamed Al-Badrashiny},
-      year={2024},
       eprint={2401.11268},
       archivePrefix={arXiv},
-      primaryClass={cs.CL}
+  booktitle    = {IEEE International Conference on Acoustics, Speech, and Signal Processing, ICASSP 2024, Seoul, Korea, April 14-19, 2024},
+  publisher    = {IEEE},
+  year         = {2024},
+  url          = {https://arxiv.org/abs/2401.11268},
+  doi          = {10.48550/arXiv.2401.11268}
 }
 ```
 
